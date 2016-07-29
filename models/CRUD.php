@@ -29,9 +29,14 @@ class CRUD {
         $stmt->execute();
         
         $result = $stmt->fetch();
+        
         $db->closeConnection();
         
         return $result;
+    }
+    
+    public function signout() {
+        unset($_SESSION['username']);
     }
     
     public function pdoinsertUserdata($firstname,$lastname,$email,$id,$pw,$pw2){
@@ -51,10 +56,6 @@ class CRUD {
     	$db->closeConnection();
     	
     	return $result;
-    }
-    
-    public function signout() {
-        unset($_SESSION['username']);
     }
     
     public function pdouploadArticle($title,$content,$user,$picture,$date){
@@ -230,6 +231,10 @@ class CRUD {
         $db->closeConnection();
 	    
 	    return $result;
+    }
+    
+    public function usersignin(){
+        
     }
 }
 ?>
