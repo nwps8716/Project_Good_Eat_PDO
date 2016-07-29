@@ -12,19 +12,16 @@ class ArticleController extends Controller {
             
             $title = $_POST["uploadtitle"];
         	$content = $_POST["uploadcontent"];
-        	$user = $_SESSION['username'];
+        	$user = $_POST['userid'];
         	
         	$picture = $_FILES["uploadfileimage"]["name"];
         	move_uploaded_file($_FILES["uploadfileimage"]["tmp_name"],"views/img/".$_FILES["uploadfileimage"]["name"]);
         	
         	$row = $crud->pdouploadArticle($title,$content,$user,$picture,$date);
-        	if($row>0) {
-        	    $_SESSION['alert'] = "貼文新增成功";
-                header("Location:/Project_Good_Eat_PDO/Home/blog");
+        	if($row){
+        	    header("Location:/Project_Good_Eat_PDO/Home/blog");
                 exit;
-        	}else{
-        	    $_SESSION['alert'] = "貼文新增失敗";
-            }
+        	}
         }
         $this->view("upload");
     }
@@ -48,29 +45,14 @@ class ArticleController extends Controller {
         	$title = $_POST["title"];
         	$content = $_POST["content"];
 
-        	if($title != "" && $content != "" && $picture == "") {
+        	if($picture == ""){
         	    $row = $crud->pdoupdateArticle($title,$content,$id);
-        	    if($row>0) {
-        	        $_SESSION['alert'] = "文章修改成功";
-        	        header("Location:/Project_Good_Eat_PDO/Home/blog");
-                    exit;
-            	}else{
-            	    $_SESSION['alert'] = "文章修改失敗";
-            	    header("Location:/Project_Good_Eat_PDO/Home/slefpost");
-                    exit;
-                }
-        	}
-        	else if ($title != "" && $content != "" && $picture !="") {
+        	    header("Location:/Project_Good_Eat_PDO/Home/blog");
+                exit;
+        	}else{
         	    $row = $crud->pdoupdatePicture($picture,$title,$content,$id);
-        	    if($row>0) {
-        	        $_SESSION['alert'] = "文章修改成功";
-        	        header("Location:/Project_Good_Eat_PDO/Home/blog");
-                    exit;
-            	}else{
-            	    $_SESSION['alert'] = "文章修改失敗";
-            	    header("Location:/Project_Good_Eat_PDO/Home/slefpost");
-                    exit;
-                }
+        	    header("Location:/Project_Good_Eat_PDO/Home/blog");
+                exit;
         	}
         }
         $this->view("modify",$modifyArray);
@@ -93,7 +75,6 @@ class ArticleController extends Controller {
             $message = $crud ->pdodeleteMessageboard($id);
             
             if(isset($row) && isset($message)) {
-                $_SESSION['alert'] = "刪除成功";
                 header("Location:/Project_Good_Eat_PDO/Home/selfpost");
                 exit;
             }
@@ -110,17 +91,15 @@ class ArticleController extends Controller {
             $date = date("Y.m.d H:i:s");
             
             $ID = $_POST["blogID"];
-            $userID = $_SESSION["username"];
+            $userID = $_POST["userid"];
         	$content = $_POST["message"];
         	
         	$row = $crud ->pdouploadMessageboard($ID,$userID,$content,$date);
-        	if($row>0) {
-        	    $_SESSION['alert'] = "留言成功";
+        	
+        	if($row){
         	    header("Location:/Project_Good_Eat_PDO/Home/blog");
                 exit; 
-            }else{
-                echo "<script>alert('留言失敗');</script>";
-            }
+        	}
             $this->blog();
         }
     }

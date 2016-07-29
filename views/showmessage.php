@@ -64,6 +64,7 @@
                     	請輸入留言內容:
                     	<br><textarea name="message" rows="5" cols="50"></textarea><br>
                     	<input type="hidden" name="blogID" value="<?php echo $showArray["id"]; ?>">
+                    	<input type="hidden" name="userid" value="<?php echo $_SESSION["username"]; ?>">
                     	<input type="button" onClick="check()" class="btn btn-primary btn-md" value="送出留言">
                     	<input type="reset" class="btn btn-primary btn-md" value="清除資料">
                     </form>

@@ -48,6 +48,7 @@
                         });
                     </script>
             		<span style="font-size:16px;">上傳圖檔 (建議800x400px以上)<input type="file" name="uploadfileimage" > </span>
+            		<input type="hidden" name="userid" value="<?php echo $_SESSION["username"]; ?>">
             		<input type="button" onClick="check()" class="btn btn-primary btn-md" value="送出資料">
             	</form>
             </div>
