@@ -1,6 +1,4 @@
 <?php
-session_start();
-
 class CRUD {
     
     public function pdogetUserdata_id($firstname,$lastname,$email,$id,$pw,$pw2){
