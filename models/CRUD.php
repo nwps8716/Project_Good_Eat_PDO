@@ -155,7 +155,7 @@ class CRUD {
     public function pdoupdatePicture($picture,$title,$content,$id) {
     	$db = new myPDO();
         $pdo = $db->getConnection();
-    	$sql = "UPDATE `fooddata` SET `imgfile`=:picture,`title`=:title,`content`=:content WHERE `ID`=:id ";
+    	$sql = "UPDATE `fooddata` SET `imgfile`=':picture',`title`=':title',`content`=:content WHERE `ID`=:id ";
         $stmt = $pdo->prepare($sql);
 	    
 	    $stmt->bindValue(':picture',$picture);

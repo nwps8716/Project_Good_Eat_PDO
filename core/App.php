@@ -7,7 +7,8 @@ class App {
         
         $url = $this->parseUrl();
         if(is_null($url)) {
-            echo "<script type='text/javascript'>location.href='Home/index';</script>";
+            header("Location:Home/index");
+            exit;
         }
         $controllerName = "{$url[0]}Controller";
         if (!file_exists("controllers/$controllerName.php")) {
@@ -17,8 +18,8 @@ class App {
         $controller = new $controllerName;
         $methodName = isset($url[1]) ? $url[1] : "index";
         if (!method_exists($controller, $methodName)) {
-            echo "<script type='text/javascript'>location.href='Home/index';</script>";
-            return;
+            header("Location:Home/index");
+            exit;
         }
         unset($url[0]); unset($url[1]);
         $params = $url ? array_values($url) : Array();
