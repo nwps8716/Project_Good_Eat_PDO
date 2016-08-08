@@ -33,10 +33,7 @@
         <div class="row">
             <div class="box">
                 <div class="col-lg-12 text-center">
-                    <?php $showArray = $data; 
-                        // var_dump($showArray['result'][0]['imgfile']);
-                        // exit;
-                    ?>
+                    <?php $showArray = $data; ?>
                     <img src="../views/img/<?php echo $showArray["result"][0]["imgfile"]; ?>" width="700" height="450" alt="">
                     <h2><?php echo $showArray["result"][0]["title"]; ?>
                         <br>

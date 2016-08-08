@@ -21,5 +21,16 @@ class myPDO{
      function closeConnection(){
           self::$connection = NULL;
      }
+     
+     //第二種方法
+     // function doSelect($sql, $paramArray){
+     //      $stmt = self::$connection->prepare($sql);
+          
+     //      //$stmt->bindValue(':id', $id);
+          
+     //      $stmt->execute($paramArray);
+
+     //      return $stmt->fetch();
+     // }
 }
 ?>
